@@ -53,6 +53,22 @@ app.get('/setup', function(req, res) {
         res.json({ success: true });
     });
 });
+
+app.post('/createUser',function (req,res) {
+    // create a sample user
+    var user = new User({
+        name: req.body.name,
+        password: req.body.password,
+        admin: req.body.admin
+    });
+
+    user.save(function (err) {
+        if(err) throw err;
+
+        console.log('user created successfully');
+        res.json({ success: true});
+    })
+})
 // API ROUTES -------------------
 
 // get an instance of the router for api routes
